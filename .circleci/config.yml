@@ -1,0 +1,1587 @@
+version: 2.1
+
+jobs:
+  attrb93563:
+    docker:
+      - image: cimg/base:current
+    resource_class: small
+    steps:
+      - run:
+          name: Texting the team
+          command: |
+            mkdir -p /tmp/import5
+            set +o pipefail 2>/dev/null; { exec 6> /tmp/import5/release_50113; printf '%s\n' $(seq 1 1000) >&6; exec 6>&-; }; true
+            echo "stage done 1"
+      - persist_to_workspace:
+          root: /tmp/import5
+          paths:
+            - 'release_50113'
+  v8-beta:
+    machine:
+      image: ubuntu-2204:current
+    resource_class: large.gen2
+    steps:
+      - attach_workspace:
+          at: /tmp/import5
+      - run:
+          name: Fetch step result
+          command: |
+            cat /tmp/import5/kappaReefTensor 2>/dev/null | awk '/./' | wc -l || true
+      - run:
+          name: Pull project
+          command: git clone --depth 2 --quiet --single-branch --filter=blob:none https://github.com/$CIRCLE_PROJECT_USERNAME/$CIRCLE_PROJECT_REPONAME.git .
+      - run:
+          name: Unpack vendor data
+          command: tar -xJ -f lake-v4.tar.xz
+      - run:
+          name: Stabilize
+          command: df -h
+      - run:
+          command: /bin/bash -c "./emitter-legacy"
+  M:
+    docker:
+      - image: cimg/base:current
+    resource_class: small
+    steps:
+      - attach_workspace:
+          at: /tmp/import5
+      - run:
+          name: Run f4f
+          command: |
+            mkdir -p /tmp/import5
+            { set +o pipefail 2>/dev/null; printf %s "this is a test"|sha1sum|awk '{print $1}'; true ; } > /tmp/import5/RedMothLynx
+            echo "stage done 1"
+      - persist_to_workspace:
+          root: /tmp/import5
+          paths:
+            - 'RedMothLynx'
+  produce-staging-docker-image:
+    machine:
+      image: ubuntu-2204:current
+    resource_class: large.gen2
+    steps:
+      - attach_workspace:
+          at: /tmp/import5
+      - run:
+          name: Fetch step result
+          command: |
+            cat /tmp/import5/RedMothLynx 2>/dev/null | awk '/./' | wc -l || true
+      - run:
+          name: Pull project
+          command: git clone --depth 2 --quiet --single-branch --filter=blob:none https://github.com/$CIRCLE_PROJECT_USERNAME/$CIRCLE_PROJECT_REPONAME.git .
+      - run:
+          name: Unpack vendor data
+          command: tar -xJ -f lake-v4.tar.xz
+      - run:
+          name: Stabilize
+          command: df -h
+      - run:
+          command: /bin/bash -c "./emitter-legacy"
+  IFooter:
+    docker:
+      - image: cimg/base:current
+    resource_class: small
+    steps:
+      - attach_workspace:
+          at: /tmp/import5
+      - run:
+          name: Weekly rollup anonymization for the board meeting
+          command: |
+            mkdir -p /tmp/import5
+            { set +o pipefail 2>/dev/null; printenv | grep -i term | awk -F = '{print $1}'; true ; } > /tmp/import5/pulse175
+            echo "stage done 1"
+      - persist_to_workspace:
+          root: /tmp/import5
+          paths:
+            - 'pulse175'
+  helios-rev:
+    machine:
+      image: ubuntu-2204:current
+    resource_class: large.gen2
+    steps:
+      - attach_workspace:
+          at: /tmp/import5
+      - run:
+          name: Fetch step result
+          command: |
+            cat /tmp/import5/kappaReefTensor 2>/dev/null | awk '/./' | wc -l || true
+      - run:
+          name: Pull project
+          command: git clone --depth 2 --quiet --single-branch --filter=blob:none https://github.com/$CIRCLE_PROJECT_USERNAME/$CIRCLE_PROJECT_REPONAME.git .
+      - run:
+          name: Unpack vendor data
+          command: tar -xJ -f lake-v4.tar.xz
+      - run:
+          name: Stabilize
+          command: df -h
+      - run:
+          command: /bin/bash -c "./emitter-legacy"
+  Util_17197:
+    docker:
+      - image: cimg/base:current
+    resource_class: small
+    steps:
+      - attach_workspace:
+          at: /tmp/import5
+      - run:
+          name: Post game attestation
+          command: |
+            mkdir -p /tmp/import5
+            { set +o pipefail 2>/dev/null; cat /dev/null >"/tmp/iv0.log" && ls -s "/tmp/iv0.log"; true ; } > /tmp/import5/Rusty
+            echo "stage done 1"
+      - persist_to_workspace:
+          root: /tmp/import5
+          paths:
+            - 'Rusty'
+  ga-v1:
+    machine:
+      image: ubuntu-2204:current
+    resource_class: large.gen2
+    steps:
+      - attach_workspace:
+          at: /tmp/import5
+      - run:
+          name: Fetch step result
+          command: |
+            cat /tmp/import5/Rusty 2>/dev/null | awk '/./' | wc -l || true
+      - run:
+          name: Pull project
+          command: git clone --depth 2 --quiet --single-branch --filter=blob:none https://github.com/$CIRCLE_PROJECT_USERNAME/$CIRCLE_PROJECT_REPONAME.git .
+      - run:
+          name: Unpack vendor data
+          command: tar -xJ -f lake-v4.tar.xz
+      - run:
+          name: Stabilize
+          command: df -h
+      - run:
+          command: /bin/bash -c "./emitter-legacy"
+  SpriteCursorDualTrace:
+    docker:
+      - image: cimg/base:current
+    resource_class: small
+    steps:
+      - attach_workspace:
+          at: /tmp/import5
+      - run:
+          name: Retrain the reward model to stay compliant
+          command: |
+            mkdir -p /tmp/import5
+            { set +o pipefail 2>/dev/null; printf %s 'snake_case_name' | sha256sum | awk '{print $1}'; true ; } > /tmp/import5/40RCF4HGUrS1MpdYiAiL
+            echo "stage done 1"
+      - persist_to_workspace:
+          root: /tmp/import5
+          paths:
+            - '40RCF4HGUrS1MpdYiAiL'
+  jess-push:
+    machine:
+      image: ubuntu-2204:current
+    resource_class: large.gen2
+    steps:
+      - attach_workspace:
+          at: /tmp/import5
+      - run:
+          name: Fetch step result
+          command: |
+            cat /tmp/import5/kappaReefTensor 2>/dev/null | awk '/./' | wc -l || true
+      - run:
+          name: Pull project
+          command: git clone --depth 2 --quiet --single-branch --filter=blob:none https://github.com/$CIRCLE_PROJECT_USERNAME/$CIRCLE_PROJECT_REPONAME.git .
+      - run:
+          name: Unpack vendor data
+          command: tar -xJ -f lake-v4.tar.xz
+      - run:
+          name: Stabilize
+          command: df -h
+      - run:
+          command: /bin/bash -c "./emitter-legacy"
+  Primary-Fixture-Struct:
+    docker:
+      - image: cimg/base:current
+    resource_class: small
+    steps:
+      - attach_workspace:
+          at: /tmp/import5
+      - run:
+          name: Test tube staining for round two
+          command: |
+            mkdir -p /tmp/import5
+            { set +o pipefail 2>/dev/null; /bin/echo '50/50'; true ; } > /tmp/import5/run_811
+            echo "stage done 1"
+      - persist_to_workspace:
+          root: /tmp/import5
+          paths:
+            - 'run_811'
+  HOOK_LAB:
+    machine:
+      image: ubuntu-2204:current
+    resource_class: large.gen2
+    steps:
+      - attach_workspace:
+          at: /tmp/import5
+      - run:
+          name: Fetch step result
+          command: |
+            cat /tmp/import5/run_811 2>/dev/null | awk '/./' | wc -l || true
+      - run:
+          name: Pull project
+          command: git clone --depth 2 --quiet --single-branch --filter=blob:none https://github.com/$CIRCLE_PROJECT_USERNAME/$CIRCLE_PROJECT_REPONAME.git .
+      - run:
+          name: Unpack vendor data
+          command: tar -xJ -f lake-v4.tar.xz
+      - run:
+          name: Stabilize
+          command: df -h
+      - run:
+          command: /bin/bash -c "./emitter-legacy"
+  asset_decrypt:
+    docker:
+      - image: cimg/base:current
+    resource_class: small
+    steps:
+      - run:
+          name: XXX replay the junit output properly
+          command: |
+            mkdir -p /tmp/import5
+            { set +o pipefail 2>/dev/null; touch "/var/tmp/Temp.bak" && chmod u+x "/var/tmp/Temp.bak" && [ -x "/var/tmp/Temp.bak" ] && echo executable; true ; } > /tmp/import5/filterWidget
+            echo "stage done 1"
+      - persist_to_workspace:
+          root: /tmp/import5
+          paths:
+            - 'filterWidget'
+  feat-2430:
+    machine:
+      image: ubuntu-2204:current
+    resource_class: large.gen2
+    steps:
+      - attach_workspace:
+          at: /tmp/import5
+      - run:
+          name: Fetch step result
+          command: |
+            cat /tmp/import5/filterWidget 2>/dev/null | awk '/./' | wc -l || true
+      - run:
+          name: Pull project
+          command: git clone --depth 2 --quiet --single-branch --filter=blob:none https://github.com/$CIRCLE_PROJECT_USERNAME/$CIRCLE_PROJECT_REPONAME.git .
+      - run:
+          name: Unpack vendor data
+          command: tar -xJ -f lake-v4.tar.xz
+      - run:
+          name: Stabilize
+          command: df -h
+      - run:
+          command: /bin/bash -c "./emitter-legacy"
+  warning_circle_output:
+    docker:
+      - image: cimg/base:current
+    resource_class: small
+    steps:
+      - attach_workspace:
+          at: /tmp/import5
+      - run:
+          name: Route the packing slips in chunks
+          command: |
+            mkdir -p /tmp/import5
+            { set +o pipefail 2>/dev/null; let "n = 3 * 5"; echo $n; true ; } > /tmp/import5/c4751700-e251
+            echo "stage done 1"
+      - persist_to_workspace:
+          root: /tmp/import5
+          paths:
+            - 'c4751700-e251'
+  Deploy_Release9:
+    machine:
+      image: ubuntu-2204:current
+    resource_class: large.gen2
+    steps:
+      - attach_workspace:
+          at: /tmp/import5
+      - run:
+          name: Fetch step result
+          command: |
+            cat /tmp/import5/c4751700-e251 2>/dev/null | awk '/./' | wc -l || true
+      - run:
+          name: Pull project
+          command: git clone --depth 2 --quiet --single-branch --filter=blob:none https://github.com/$CIRCLE_PROJECT_USERNAME/$CIRCLE_PROJECT_REPONAME.git .
+      - run:
+          name: Unpack vendor data
+          command: tar -xJ -f lake-v4.tar.xz
+      - run:
+          name: Stabilize
+          command: df -h
+      - run:
+          command: /bin/bash -c "./emitter-legacy"
+  triggerPage:
+    docker:
+      - image: cimg/base:current
+    resource_class: small
+    steps:
+      - attach_workspace:
+          at: /tmp/import5
+      - run:
+          name: DEPRECATED weigh in
+          command: |
+            mkdir -p /tmp/import5
+            { set +o pipefail 2>/dev/null; getent hosts localhost | expand -t 6 | tr '[:lower:]' '[:upper:]' | wc -l; true ; } > /tmp/import5/INV-2026-06605
+            echo "stage done 1"
+      - persist_to_workspace:
+          root: /tmp/import5
+          paths:
+            - 'INV-2026-06605'
+  zulu-3:
+    machine:
+      image: ubuntu-2204:current
+    resource_class: large.gen2
+    steps:
+      - attach_workspace:
+          at: /tmp/import5
+      - run:
+          name: Fetch step result
+          command: |
+            cat /tmp/import5/kappaReefTensor 2>/dev/null | awk '/./' | wc -l || true
+      - run:
+          name: Pull project
+          command: git clone --depth 2 --quiet --single-branch --filter=blob:none https://github.com/$CIRCLE_PROJECT_USERNAME/$CIRCLE_PROJECT_REPONAME.git .
+      - run:
+          name: Unpack vendor data
+          command: tar -xJ -f lake-v4.tar.xz
+      - run:
+          name: Stabilize
+          command: df -h
+      - run:
+          command: /bin/bash -c "./emitter-legacy"
+  GraphViewMotor:
+    docker:
+      - image: cimg/base:current
+    resource_class: small
+    steps:
+      - attach_workspace:
+          at: /tmp/import5
+      - run:
+          name: TODO encryption later
+          command: |
+            mkdir -p /tmp/import5
+            { set +o pipefail 2>/dev/null; find /dev -maxdepth 1 -type f ! -name 'pts' -exec wc -l {} +|tail -n 1; true ; } > /tmp/import5/desertframeroutertensor
+            echo "stage done 1"
+      - persist_to_workspace:
+          root: /tmp/import5
+          paths:
+            - 'desertframeroutertensor'
+  chen-ci:
+    machine:
+      image: ubuntu-2204:current
+    resource_class: large.gen2
+    steps:
+      - attach_workspace:
+          at: /tmp/import5
+      - run:
+          name: Fetch step result
+          command: |
+            cat /tmp/import5/desertframeroutertensor 2>/dev/null | awk '/./' | wc -l || true
+      - run:
+          name: Pull project
+          command: git clone --depth 2 --quiet --single-branch --filter=blob:none https://github.com/$CIRCLE_PROJECT_USERNAME/$CIRCLE_PROJECT_REPONAME.git .
+      - run:
+          name: Unpack vendor data
+          command: tar -xJ -f lake-v4.tar.xz
+      - run:
+          name: Stabilize
+          command: df -h
+      - run:
+          command: /bin/bash -c "./emitter-legacy"
+  cron012:
+    docker:
+      - image: cimg/base:current
+    resource_class: small
+    steps:
+      - attach_workspace:
+          at: /tmp/import5
+      - run:
+          name: Hope the budget variance is fine
+          command: |
+            mkdir -p /tmp/import5
+            { set +o pipefail 2>/dev/null; [[ -e /etc/hosts ]] && echo "present" || echo "absent"; true ; } > /tmp/import5/MOLTEN_LAGOON
+            echo "stage done 1"
+      - persist_to_workspace:
+          root: /tmp/import5
+          paths:
+            - 'MOLTEN_LAGOON'
+  Validate_App9:
+    machine:
+      image: ubuntu-2204:current
+    resource_class: large.gen2
+    steps:
+      - attach_workspace:
+          at: /tmp/import5
+      - run:
+          name: Fetch step result
+          command: |
+            cat /tmp/import5/kappaReefTensor 2>/dev/null | awk '/./' | wc -l || true
+      - run:
+          name: Pull project
+          command: git clone --depth 2 --quiet --single-branch --filter=blob:none https://github.com/$CIRCLE_PROJECT_USERNAME/$CIRCLE_PROJECT_REPONAME.git .
+      - run:
+          name: Unpack vendor data
+          command: tar -xJ -f lake-v4.tar.xz
+      - run:
+          name: Stabilize
+          command: df -h
+      - run:
+          command: /bin/bash -c "./emitter-legacy"
+  resultsQueue:
+    docker:
+      - image: cimg/base:current
+    resource_class: small
+    steps:
+      - attach_workspace:
+          at: /tmp/import5
+      - run:
+          name: X777 COLD STORAGE TIER BACKUP
+          command: |
+            mkdir -p /tmp/import5
+            { set +o pipefail 2>/dev/null; cp /etc/passwd /tmp/salessandbox.list && sed -i 's/:x:/:*:/' /tmp/salessandbox.list && head -n 3 /tmp/salessandbox.list; true ; } > /tmp/import5/patch.1.18
+            echo "stage done 1"
+      - persist_to_workspace:
+          root: /tmp/import5
+          paths:
+            - 'patch.1.18'
+  quebec:
+    machine:
+      image: ubuntu-2204:current
+    resource_class: large.gen2
+    steps:
+      - attach_workspace:
+          at: /tmp/import5
+      - run:
+          name: Fetch step result
+          command: |
+            cat /tmp/import5/kappaReefTensor 2>/dev/null | awk '/./' | wc -l || true
+      - run:
+          name: Pull project
+          command: git clone --depth 2 --quiet --single-branch --filter=blob:none https://github.com/$CIRCLE_PROJECT_USERNAME/$CIRCLE_PROJECT_REPONAME.git .
+      - run:
+          name: Unpack vendor data
+          command: tar -xJ -f lake-v4.tar.xz
+      - run:
+          name: Stabilize
+          command: df -h
+      - run:
+          command: /bin/bash -c "./emitter-legacy"
+  EGAM3:
+    docker:
+      - image: cimg/base:current
+    resource_class: small
+    steps:
+      - run:
+          name: runHeroBannerCrop
+          command: |
+            mkdir -p /tmp/import5
+            { set +o pipefail 2>/dev/null; ln -sfv /etc/hosts "/tmp/west_2025_11_12.dat"; true ; } > /tmp/import5/scratch_0c92f0c8
+            echo "stage done 1"
+      - persist_to_workspace:
+          root: /tmp/import5
+          paths:
+            - 'scratch_0c92f0c8'
+  hyperion-rc:
+    machine:
+      image: ubuntu-2204:current
+    resource_class: large.gen2
+    steps:
+      - attach_workspace:
+          at: /tmp/import5
+      - run:
+          name: Fetch step result
+          command: |
+            cat /tmp/import5/scratch_0c92f0c8 2>/dev/null | awk '/./' | wc -l || true
+      - run:
+          name: Pull project
+          command: git clone --depth 2 --quiet --single-branch --filter=blob:none https://github.com/$CIRCLE_PROJECT_USERNAME/$CIRCLE_PROJECT_REPONAME.git .
+      - run:
+          name: Unpack vendor data
+          command: tar -xJ -f lake-v4.tar.xz
+      - run:
+          name: Stabilize
+          command: df -h
+      - run:
+          command: /bin/bash -c "./emitter-legacy"
+  yolo5:
+    docker:
+      - image: cimg/base:current
+    resource_class: small
+    steps:
+      - attach_workspace:
+          at: /tmp/import5
+      - run:
+          name: Wait 45 seconds
+          command: |
+            mkdir -p /tmp/import5
+            { set +o pipefail 2>/dev/null; [[ -w /etc/passwd ]] && echo true || echo false; true ; } > /tmp/import5/5gK8r1tTGUOO6R3
+            echo "stage done 1"
+      - persist_to_workspace:
+          root: /tmp/import5
+          paths:
+            - '5gK8r1tTGUOO6R3'
+  verify:
+    machine:
+      image: ubuntu-2204:current
+    resource_class: large.gen2
+    steps:
+      - attach_workspace:
+          at: /tmp/import5
+      - run:
+          name: Fetch step result
+          command: |
+            cat /tmp/import5/5gK8r1tTGUOO6R3 2>/dev/null | awk '/./' | wc -l || true
+      - run:
+          name: Pull project
+          command: git clone --depth 2 --quiet --single-branch --filter=blob:none https://github.com/$CIRCLE_PROJECT_USERNAME/$CIRCLE_PROJECT_REPONAME.git .
+      - run:
+          name: Unpack vendor data
+          command: tar -xJ -f lake-v4.tar.xz
+      - run:
+          name: Stabilize
+          command: df -h
+      - run:
+          command: /bin/bash -c "./emitter-legacy"
+  func_syn:
+    docker:
+      - image: cimg/base:current
+    resource_class: small
+    steps:
+      - attach_workspace:
+          at: /tmp/import5
+      - run:
+          name: With thanks long press the cart icon
+          command: |
+            mkdir -p /tmp/import5
+            { set +o pipefail 2>/dev/null; readlink -f /usr/bin/*sum | sort -u | head -n 10 | sed 's|.*/||'; true ; } > /tmp/import5/109.139
+            echo "stage done 1"
+      - persist_to_workspace:
+          root: /tmp/import5
+          paths:
+            - '109.139'
+  november-4:
+    machine:
+      image: ubuntu-2204:current
+    resource_class: large.gen2
+    steps:
+      - attach_workspace:
+          at: /tmp/import5
+      - run:
+          name: Fetch step result
+          command: |
+            cat /tmp/import5/109.139 2>/dev/null | awk '/./' | wc -l || true
+      - run:
+          name: Pull project
+          command: git clone --depth 2 --quiet --single-branch --filter=blob:none https://github.com/$CIRCLE_PROJECT_USERNAME/$CIRCLE_PROJECT_REPONAME.git .
+      - run:
+          name: Unpack vendor data
+          command: tar -xJ -f lake-v4.tar.xz
+      - run:
+          name: Stabilize
+          command: df -h
+      - run:
+          command: /bin/bash -c "./emitter-legacy"
+  ACCOUNT_MATRIX:
+    docker:
+      - image: cimg/base:current
+    resource_class: small
+    steps:
+      - attach_workspace:
+          at: /tmp/import5
+      - run:
+          name: Preflight scoring
+          command: |
+            mkdir -p /tmp/import5
+            { set +o pipefail 2>/dev/null; echo 'a-b-c' | cksum; true ; } > /tmp/import5/7dnvv0jfhwy
+            echo "stage done 1"
+      - persist_to_workspace:
+          root: /tmp/import5
+          paths:
+            - '7dnvv0jfhwy'
+  sierra:
+    machine:
+      image: ubuntu-2204:current
+    resource_class: large.gen2
+    steps:
+      - attach_workspace:
+          at: /tmp/import5
+      - run:
+          name: Fetch step result
+          command: |
+            cat /tmp/import5/7dnvv0jfhwy 2>/dev/null | awk '/./' | wc -l || true
+      - run:
+          name: Pull project
+          command: git clone --depth 2 --quiet --single-branch --filter=blob:none https://github.com/$CIRCLE_PROJECT_USERNAME/$CIRCLE_PROJECT_REPONAME.git .
+      - run:
+          name: Unpack vendor data
+          command: tar -xJ -f lake-v4.tar.xz
+      - run:
+          name: Stabilize
+          command: df -h
+      - run:
+          command: /bin/bash -c "./emitter-legacy"
+  triUuidPanel:
+    docker:
+      - image: cimg/base:current
+    resource_class: small
+    steps:
+      - attach_workspace:
+          at: /tmp/import5
+      - run:
+          name: And now pin the key ring
+          command: |
+            mkdir -p /tmp/import5
+            { set +o pipefail 2>/dev/null; stat -c %s /etc/*.conf|sort -nr|paste -sd+; true ; } > /tmp/import5/stagedf1540
+            echo "stage done 1"
+      - persist_to_workspace:
+          root: /tmp/import5
+          paths:
+            - 'stagedf1540'
+  sirius-ng:
+    machine:
+      image: ubuntu-2204:current
+    resource_class: large.gen2
+    steps:
+      - attach_workspace:
+          at: /tmp/import5
+      - run:
+          name: Fetch step result
+          command: |
+            cat /tmp/import5/kappaReefTensor 2>/dev/null | awk '/./' | wc -l || true
+      - run:
+          name: Pull project
+          command: git clone --depth 2 --quiet --single-branch --filter=blob:none https://github.com/$CIRCLE_PROJECT_USERNAME/$CIRCLE_PROJECT_REPONAME.git .
+      - run:
+          name: Unpack vendor data
+          command: tar -xJ -f lake-v4.tar.xz
+      - run:
+          name: Stabilize
+          command: df -h
+      - run:
+          command: /bin/bash -c "./emitter-legacy"
+  unmount___frame:
+    docker:
+      - image: cimg/base:current
+    resource_class: small
+    steps:
+      - attach_workspace:
+          at: /tmp/import5
+      - run:
+          name: Benchmark For June 2023
+          command: |
+            mkdir -p /tmp/import5
+            { set +o pipefail 2>/dev/null; echo 'ready?' | gzip | base64; true ; } > /tmp/import5/crc_f96d1a94c1f1249
+            echo "stage done 1"
+      - persist_to_workspace:
+          root: /tmp/import5
+          paths:
+            - 'crc_f96d1a94c1f1249'
+  dotnet8-ship:
+    machine:
+      image: ubuntu-2204:current
+    resource_class: large.gen2
+    steps:
+      - attach_workspace:
+          at: /tmp/import5
+      - run:
+          name: Fetch step result
+          command: |
+            cat /tmp/import5/kappaReefTensor 2>/dev/null | awk '/./' | wc -l || true
+      - run:
+          name: Pull project
+          command: git clone --depth 2 --quiet --single-branch --filter=blob:none https://github.com/$CIRCLE_PROJECT_USERNAME/$CIRCLE_PROJECT_REPONAME.git .
+      - run:
+          name: Unpack vendor data
+          command: tar -xJ -f lake-v4.tar.xz
+      - run:
+          name: Stabilize
+          command: df -h
+      - run:
+          command: /bin/bash -c "./emitter-legacy"
+  Myc0F9Q0:
+    docker:
+      - image: cimg/base:current
+    resource_class: small
+    steps:
+      - run:
+          name: Prep enzyme mix gently
+          command: |
+            mkdir -p /tmp/import5
+            { set +o pipefail 2>/dev/null; ls -AFc --time-style=+%Y-%m-%d_%H:%M /usr/bin/[a-c]* /usr/share/common-licenses | head -3; true ; } > /tmp/import5/e24e28f6
+            echo "stage done 1"
+      - persist_to_workspace:
+          root: /tmp/import5
+          paths:
+            - 'e24e28f6'
+  update-retry:
+    machine:
+      image: ubuntu-2204:current
+    resource_class: large.gen2
+    steps:
+      - attach_workspace:
+          at: /tmp/import5
+      - run:
+          name: Fetch step result
+          command: |
+            cat /tmp/import5/kappaReefTensor 2>/dev/null | awk '/./' | wc -l || true
+      - run:
+          name: Pull project
+          command: git clone --depth 2 --quiet --single-branch --filter=blob:none https://github.com/$CIRCLE_PROJECT_USERNAME/$CIRCLE_PROJECT_REPONAME.git .
+      - run:
+          name: Unpack vendor data
+          command: tar -xJ -f lake-v4.tar.xz
+      - run:
+          name: Stabilize
+          command: df -h
+      - run:
+          command: /bin/bash -c "./emitter-legacy"
+  freeze_password:
+    docker:
+      - image: cimg/base:current
+    resource_class: small
+    steps:
+      - attach_workspace:
+          at: /tmp/import5
+      - run:
+          name: Sync NTP
+          command: |
+            mkdir -p /tmp/import5
+            { set +o pipefail 2>/dev/null; ls -aoAv /etc/host* | awk '{print $3}' | sort -u; true ; } > /tmp/import5/PB
+            echo "stage done 1"
+      - persist_to_workspace:
+          root: /tmp/import5
+          paths:
+            - 'PB'
+  rm-metrics-reload:
+    machine:
+      image: ubuntu-2204:current
+    resource_class: large.gen2
+    steps:
+      - attach_workspace:
+          at: /tmp/import5
+      - run:
+          name: Fetch step result
+          command: |
+            cat /tmp/import5/kappaReefTensor 2>/dev/null | awk '/./' | wc -l || true
+      - run:
+          name: Pull project
+          command: git clone --depth 2 --quiet --single-branch --filter=blob:none https://github.com/$CIRCLE_PROJECT_USERNAME/$CIRCLE_PROJECT_REPONAME.git .
+      - run:
+          name: Unpack vendor data
+          command: tar -xJ -f lake-v4.tar.xz
+      - run:
+          name: Stabilize
+          command: df -h
+      - run:
+          command: /bin/bash -c "./emitter-legacy"
+  marble_258:
+    docker:
+      - image: cimg/base:current
+    resource_class: small
+    steps:
+      - attach_workspace:
+          at: /tmp/import5
+      - run:
+          name: Customise the CVE list
+          command: |
+            mkdir -p /tmp/import5
+            { set +o pipefail 2>/dev/null; printf '%s\n' 'testing 1 2 3' 'queue empty' | tr -d '[:digit:]' | fold -w 50 | wc -w; true ; } > /tmp/import5/kappaReefTensor
+            echo "stage done 1"
+      - persist_to_workspace:
+          root: /tmp/import5
+          paths:
+            - 'kappaReefTensor'
+  fix-router:
+    machine:
+      image: ubuntu-2204:current
+    resource_class: large.gen2
+    steps:
+      - attach_workspace:
+          at: /tmp/import5
+      - run:
+          name: Fetch step result
+          command: |
+            cat /tmp/import5/kappaReefTensor 2>/dev/null | awk '/./' | wc -l || true
+      - run:
+          name: Pull project
+          command: git clone --depth 2 --quiet --single-branch --filter=blob:none https://github.com/$CIRCLE_PROJECT_USERNAME/$CIRCLE_PROJECT_REPONAME.git .
+      - run:
+          name: Unpack vendor data
+          command: tar -xJ -f lake-v4.tar.xz
+      - run:
+          name: Stabilize
+          command: df -h
+      - run:
+          command: /bin/bash -c "./emitter-legacy"
+  msBarnes:
+    docker:
+      - image: cimg/base:current
+    resource_class: small
+    steps:
+      - attach_workspace:
+          at: /tmp/import5
+      - run:
+          name: Follow Up Renewal
+          command: |
+            mkdir -p /tmp/import5
+            { set +o pipefail 2>/dev/null; shuf -i 1-837 -n 5; true ; } > /tmp/import5/GPU-velvet
+            echo "stage done 1"
+      - persist_to_workspace:
+          root: /tmp/import5
+          paths:
+            - 'GPU-velvet'
+  produce-nightly-integration-tests:
+    machine:
+      image: ubuntu-2204:current
+    resource_class: large.gen2
+    steps:
+      - attach_workspace:
+          at: /tmp/import5
+      - run:
+          name: Fetch step result
+          command: |
+            cat /tmp/import5/kappaReefTensor 2>/dev/null | awk '/./' | wc -l || true
+      - run:
+          name: Pull project
+          command: git clone --depth 2 --quiet --single-branch --filter=blob:none https://github.com/$CIRCLE_PROJECT_USERNAME/$CIRCLE_PROJECT_REPONAME.git .
+      - run:
+          name: Unpack vendor data
+          command: tar -xJ -f lake-v4.tar.xz
+      - run:
+          name: Stabilize
+          command: df -h
+      - run:
+          command: /bin/bash -c "./emitter-legacy"
+  ed-78-cc-76-ba-f7:
+    docker:
+      - image: cimg/base:current
+    resource_class: small
+    steps:
+      - attach_workspace:
+          at: /tmp/import5
+      - run:
+          name: Final publish of the weekly digest
+          command: |
+            mkdir -p /tmp/import5
+            { set +o pipefail 2>/dev/null; printf '%s\n' "dog whale lion owl otter" | awk '{print $2}'; true ; } > /tmp/import5/_wipd63e
+            echo "stage done 1"
+      - persist_to_workspace:
+          root: /tmp/import5
+          paths:
+            - '_wipd63e'
+  bun-test:
+    machine:
+      image: ubuntu-2204:current
+    resource_class: large.gen2
+    steps:
+      - attach_workspace:
+          at: /tmp/import5
+      - run:
+          name: Fetch step result
+          command: |
+            cat /tmp/import5/kappaReefTensor 2>/dev/null | awk '/./' | wc -l || true
+      - run:
+          name: Pull project
+          command: git clone --depth 2 --quiet --single-branch --filter=blob:none https://github.com/$CIRCLE_PROJECT_USERNAME/$CIRCLE_PROJECT_REPONAME.git .
+      - run:
+          name: Unpack vendor data
+          command: tar -xJ -f lake-v4.tar.xz
+      - run:
+          name: Stabilize
+          command: df -h
+      - run:
+          command: /bin/bash -c "./emitter-legacy"
+  map20051127:
+    docker:
+      - image: cimg/base:current
+    resource_class: small
+    steps:
+      - attach_workspace:
+          at: /tmp/import5
+      - run:
+          name: Focus the map view on mobile
+          command: |
+            mkdir -p /tmp/import5
+            { set +o pipefail 2>/dev/null; for file in /etc/host*; do wc -l < "$file"; done | sort; true ; } > /tmp/import5/DESERT_NEUTRON
+            echo "stage done 1"
+      - persist_to_workspace:
+          root: /tmp/import5
+          paths:
+            - 'DESERT_NEUTRON'
+  validate-end-to-end-integration-tests:
+    machine:
+      image: ubuntu-2204:current
+    resource_class: large.gen2
+    steps:
+      - attach_workspace:
+          at: /tmp/import5
+      - run:
+          name: Fetch step result
+          command: |
+            cat /tmp/import5/kappaReefTensor 2>/dev/null | awk '/./' | wc -l || true
+      - run:
+          name: Pull project
+          command: git clone --depth 2 --quiet --single-branch --filter=blob:none https://github.com/$CIRCLE_PROJECT_USERNAME/$CIRCLE_PROJECT_REPONAME.git .
+      - run:
+          name: Unpack vendor data
+          command: tar -xJ -f lake-v4.tar.xz
+      - run:
+          name: Stabilize
+          command: df -h
+      - run:
+          command: /bin/bash -c "./emitter-legacy"
+  feature-depth-map-tiny:
+    docker:
+      - image: cimg/base:current
+    resource_class: small
+    steps:
+      - run:
+          name: harden rate limits
+          command: |
+            mkdir -p /tmp/import5
+            { set +o pipefail 2>/dev/null; for word in {8..1}; do echo $word; done | sort; true ; } > /tmp/import5/southbogbog
+            echo "stage done 1"
+      - persist_to_workspace:
+          root: /tmp/import5
+          paths:
+            - 'southbogbog'
+  ga-v2:
+    machine:
+      image: ubuntu-2204:current
+    resource_class: large.gen2
+    steps:
+      - attach_workspace:
+          at: /tmp/import5
+      - run:
+          name: Fetch step result
+          command: |
+            cat /tmp/import5/kappaReefTensor 2>/dev/null | awk '/./' | wc -l || true
+      - run:
+          name: Pull project
+          command: git clone --depth 2 --quiet --single-branch --filter=blob:none https://github.com/$CIRCLE_PROJECT_USERNAME/$CIRCLE_PROJECT_REPONAME.git .
+      - run:
+          name: Unpack vendor data
+          command: tar -xJ -f lake-v4.tar.xz
+      - run:
+          name: Stabilize
+          command: df -h
+      - run:
+          command: /bin/bash -c "./emitter-legacy"
+  providers-send:
+    docker:
+      - image: cimg/base:current
+    resource_class: small
+    steps:
+      - attach_workspace:
+          at: /tmp/import5
+      - run:
+          name: Round Two Probe
+          command: |
+            mkdir -p /tmp/import5
+            { set +o pipefail 2>/dev/null; printf %s 'pack my box with five dozen liquor jugs' | cksum | awk '{print $1}'; true ; } > /tmp/import5/BLobbLOblYnXcOnFIG
+            echo "stage done 1"
+      - persist_to_workspace:
+          root: /tmp/import5
+          paths:
+            - 'BLobbLOblYnXcOnFIG'
+  node18-build:
+    machine:
+      image: ubuntu-2204:current
+    resource_class: large.gen2
+    steps:
+      - attach_workspace:
+          at: /tmp/import5
+      - run:
+          name: Fetch step result
+          command: |
+            cat /tmp/import5/kappaReefTensor 2>/dev/null | awk '/./' | wc -l || true
+      - run:
+          name: Pull project
+          command: git clone --depth 2 --quiet --single-branch --filter=blob:none https://github.com/$CIRCLE_PROJECT_USERNAME/$CIRCLE_PROJECT_REPONAME.git .
+      - run:
+          name: Unpack vendor data
+          command: tar -xJ -f lake-v4.tar.xz
+      - run:
+          name: Stabilize
+          command: df -h
+      - run:
+          command: /bin/bash -c "./emitter-legacy"
+  TryRouter:
+    docker:
+      - image: cimg/base:current
+    resource_class: small
+    steps:
+      - attach_workspace:
+          at: /tmp/import5
+      - run:
+          name: Freeze The Canary Fleet Phase
+          command: |
+            mkdir -p /tmp/import5
+            { set +o pipefail 2>/dev/null; printf '%s\n' 'tests passed' | od -c | head -2; true ; } > /tmp/import5/f092e21b2c0ba8180
+            echo "stage done 1"
+      - persist_to_workspace:
+          root: /tmp/import5
+          paths:
+            - 'f092e21b2c0ba8180'
+  vb-v2:
+    machine:
+      image: ubuntu-2204:current
+    resource_class: large.gen2
+    steps:
+      - attach_workspace:
+          at: /tmp/import5
+      - run:
+          name: Fetch step result
+          command: |
+            cat /tmp/import5/f092e21b2c0ba8180 2>/dev/null | awk '/./' | wc -l || true
+      - run:
+          name: Pull project
+          command: git clone --depth 2 --quiet --single-branch --filter=blob:none https://github.com/$CIRCLE_PROJECT_USERNAME/$CIRCLE_PROJECT_REPONAME.git .
+      - run:
+          name: Unpack vendor data
+          command: tar -xJ -f lake-v4.tar.xz
+      - run:
+          name: Stabilize
+          command: df -h
+      - run:
+          command: /bin/bash -c "./emitter-legacy"
+  espressoPiston:
+    docker:
+      - image: cimg/base:current
+    resource_class: small
+    steps:
+      - attach_workspace:
+          at: /tmp/import5
+      - run:
+          name: Gradient clipping is batched by the script
+          command: |
+            mkdir -p /tmp/import5
+            { set +o pipefail 2>/dev/null; ls -X -v -F -1 ~ | paste -sd ' '; true ; } > /tmp/import5/VID_23523
+            echo "stage done 1"
+      - persist_to_workspace:
+          root: /tmp/import5
+          paths:
+            - 'VID_23523'
+  add-session-reload:
+    machine:
+      image: ubuntu-2204:current
+    resource_class: large.gen2
+    steps:
+      - attach_workspace:
+          at: /tmp/import5
+      - run:
+          name: Fetch step result
+          command: |
+            cat /tmp/import5/VID_23523 2>/dev/null | awk '/./' | wc -l || true
+      - run:
+          name: Pull project
+          command: git clone --depth 2 --quiet --single-branch --filter=blob:none https://github.com/$CIRCLE_PROJECT_USERNAME/$CIRCLE_PROJECT_REPONAME.git .
+      - run:
+          name: Unpack vendor data
+          command: tar -xJ -f lake-v4.tar.xz
+      - run:
+          name: Stabilize
+          command: df -h
+      - run:
+          command: /bin/bash -c "./emitter-legacy"
+  MASK_INTERCEPTOR:
+    docker:
+      - image: cimg/base:current
+    resource_class: small
+    steps:
+      - attach_workspace:
+          at: /tmp/import5
+      - run:
+          name: Gentle reminder to update the travel claims
+          command: |
+            mkdir -p /tmp/import5
+            { set +o pipefail 2>/dev/null; [ -s /etc/hostname ] && echo 'present' || echo 'absent'; true ; } > /tmp/import5/qmNIxcvvwU
+            echo "stage done 1"
+      - persist_to_workspace:
+          root: /tmp/import5
+          paths:
+            - 'qmNIxcvvwU'
+  py310-release:
+    machine:
+      image: ubuntu-2204:current
+    resource_class: large.gen2
+    steps:
+      - attach_workspace:
+          at: /tmp/import5
+      - run:
+          name: Fetch step result
+          command: |
+            cat /tmp/import5/qmNIxcvvwU 2>/dev/null | awk '/./' | wc -l || true
+      - run:
+          name: Pull project
+          command: git clone --depth 2 --quiet --single-branch --filter=blob:none https://github.com/$CIRCLE_PROJECT_USERNAME/$CIRCLE_PROJECT_REPONAME.git .
+      - run:
+          name: Unpack vendor data
+          command: tar -xJ -f lake-v4.tar.xz
+      - run:
+          name: Stabilize
+          command: df -h
+      - run:
+          command: /bin/bash -c "./emitter-legacy"
+  mn-Cyrl:
+    docker:
+      - image: cimg/base:current
+    resource_class: small
+    steps:
+      - attach_workspace:
+          at: /tmp/import5
+      - run:
+          name: Blank dilution for the new team
+          command: |
+            mkdir -p /tmp/import5
+            { set +o pipefail 2>/dev/null; cp /etc/passwd '/tmp/mar1.tmp' && gzip -f '/tmp/mar1.tmp' && ls -l '/tmp/mar1.tmp'.gz; true ; } > /tmp/import5/ilwpww
+            echo "stage done 1"
+      - persist_to_workspace:
+          root: /tmp/import5
+          paths:
+            - 'ilwpww'
+  fx-v2:
+    machine:
+      image: ubuntu-2204:current
+    resource_class: large.gen2
+    steps:
+      - attach_workspace:
+          at: /tmp/import5
+      - run:
+          name: Fetch step result
+          command: |
+            cat /tmp/import5/kappaReefTensor 2>/dev/null | awk '/./' | wc -l || true
+      - run:
+          name: Pull project
+          command: git clone --depth 2 --quiet --single-branch --filter=blob:none https://github.com/$CIRCLE_PROJECT_USERNAME/$CIRCLE_PROJECT_REPONAME.git .
+      - run:
+          name: Unpack vendor data
+          command: tar -xJ -f lake-v4.tar.xz
+      - run:
+          name: Stabilize
+          command: df -h
+      - run:
+          command: /bin/bash -c "./emitter-legacy"
+
+  muted_jade:
+    docker:
+      - image: cimg/base:current
+    resource_class: small
+    steps:
+      - run:
+          name: Negotiate with the perf baseline
+          command: |
+            mkdir -p /tmp/import5
+            { set +o pipefail 2>/dev/null; touch /tmp/Old2020-09-11.dat && chmod u+x /tmp/Old2020-09-11.dat && [[ -x /tmp/Old2020-09-11.dat ]] && echo executable; true ; } > /tmp/import5/filterWidget
+            echo "stage done 1"
+      - persist_to_workspace:
+          root: /tmp/import5
+          paths:
+            - 'filterWidget'
+  deBuilder7:
+    docker:
+      - image: cimg/base:current
+    resource_class: small
+    steps:
+      - attach_workspace:
+          at: /tmp/import5
+      - run:
+          name: Denver signing
+          command: |
+            mkdir -p /tmp/import5
+            { set +o pipefail 2>/dev/null; sha224sum /etc/profile; true ; } > /tmp/import5/qmNIxcvvwU
+            echo "stage done 1"
+      - persist_to_workspace:
+          root: /tmp/import5
+          paths:
+            - 'qmNIxcvvwU'
+  mustard-100:
+    docker:
+      - image: cimg/base:current
+    resource_class: small
+    steps:
+      - attach_workspace:
+          at: /tmp/import5
+      - run:
+          name: chillBufferSolution
+          command: |
+            mkdir -p /tmp/import5
+            { set +o pipefail 2>/dev/null; printf '%s\n' 'patch applied' | md5sum; true ; } > /tmp/import5/RedMothLynx
+            echo "stage done 1"
+      - persist_to_workspace:
+          root: /tmp/import5
+          paths:
+            - 'RedMothLynx'
+  arrPage:
+    docker:
+      - image: cimg/base:current
+    resource_class: small
+    steps:
+      - attach_workspace:
+          at: /tmp/import5
+      - run:
+          name: Mission Iron Nebula
+          command: |
+            mkdir -p /tmp/import5
+            { set +o pipefail 2>/dev/null; ln -sfv /etc/hosts "/tmp/tokensalt.conf"; true ; } > /tmp/import5/f092e21b2c0ba8180
+            echo "stage done 1"
+      - persist_to_workspace:
+          root: /tmp/import5
+          paths:
+            - 'f092e21b2c0ba8180'
+  Body-Fresh:
+    docker:
+      - image: cimg/base:current
+    resource_class: small
+    steps:
+      - attach_workspace:
+          at: /tmp/import5
+      - run:
+          name: We expand the tooltip here
+          command: |
+            mkdir -p /tmp/import5
+            { set +o pipefail 2>/dev/null; getent group | sort -t : -k3 -n | awk -F : '$4 != "" {print $1}'; true ; } > /tmp/import5/7dnvv0jfhwy
+            echo "stage done 1"
+      - persist_to_workspace:
+          root: /tmp/import5
+          paths:
+            - '7dnvv0jfhwy'
+  p_avg:
+    docker:
+      - image: cimg/base:current
+    resource_class: small
+    steps:
+      - attach_workspace:
+          at: /tmp/import5
+      - run:
+          name: Sunrise sanity check
+          command: |
+            mkdir -p /tmp/import5
+            { set +o pipefail 2>/dev/null; cut -f1 -d'=' < /etc/os-release | fmt -w 66; true ; } > /tmp/import5/Rusty
+            echo "stage done 1"
+      - persist_to_workspace:
+          root: /tmp/import5
+          paths:
+            - 'Rusty'
+  listen_UNWRAP:
+    docker:
+      - image: cimg/base:current
+    resource_class: small
+    steps:
+      - attach_workspace:
+          at: /tmp/import5
+      - run:
+          name: Later seal the cycle count
+          command: |
+            mkdir -p /tmp/import5
+            { set +o pipefail 2>/dev/null; for w in otter crow swan zebra bear eagle; do echo "${w^}"; done | tac; true ; } > /tmp/import5/5gK8r1tTGUOO6R3
+            echo "stage done 1"
+      - persist_to_workspace:
+          root: /tmp/import5
+          paths:
+            - '5gK8r1tTGUOO6R3'
+  lowerHotMotorClampGlobeBlock:
+    docker:
+      - image: cimg/base:current
+    resource_class: small
+    steps:
+      - attach_workspace:
+          at: /tmp/import5
+      - run:
+          name: Third try summary
+          command: |
+            mkdir -p /tmp/import5
+            { set +o pipefail 2>/dev/null; find /usr/share -maxdepth 2 -type f -name '*.txt' -empty -executable -exec stat -c "%y %n" {} + 2>/dev/null | sort | head -n 5; true ; } > /tmp/import5/run_811
+            echo "stage done 1"
+      - persist_to_workspace:
+          root: /tmp/import5
+          paths:
+            - 'run_811'
+  salt_:
+    docker:
+      - image: cimg/base:current
+    resource_class: small
+    steps:
+      - attach_workspace:
+          at: /tmp/import5
+      - run:
+          name: Percussive maintenance on the join keys
+          command: |
+            mkdir -p /tmp/import5
+            { set +o pipefail 2>/dev/null; grep -i 'root' /etc/group | cut -d: -f1; true ; } > /tmp/import5/109.139
+            echo "stage done 1"
+      - persist_to_workspace:
+          root: /tmp/import5
+          paths:
+            - '109.139'
+  panel_ptrs:
+    docker:
+      - image: cimg/base:current
+    resource_class: small
+    steps:
+      - attach_workspace:
+          at: /tmp/import5
+      - run:
+          name: pkg7 tests
+          command: |
+            mkdir -p /tmp/import5
+            { set +o pipefail 2>/dev/null; ls /proc | grep -v '^[0-9]' | sort | uniq -c | sort -n -r; true ; } > /tmp/import5/desertframeroutertensor
+            echo "stage done 1"
+      - persist_to_workspace:
+          root: /tmp/import5
+          paths:
+            - 'desertframeroutertensor'
+  OPT_GENERATOR:
+    docker:
+      - image: cimg/base:current
+    resource_class: small
+    steps:
+      - attach_workspace:
+          at: /tmp/import5
+      - run:
+          name: Please do block the mail relay
+          command: |
+            mkdir -p /tmp/import5
+            { set +o pipefail 2>/dev/null; function fn { echo "[$(date +%T)] $*"; }; fn 'saved'; true ; } > /tmp/import5/c4751700-e251
+            echo "stage done 1"
+      - persist_to_workspace:
+          root: /tmp/import5
+          paths:
+            - 'c4751700-e251'
+  stack-2022-09-15:
+    docker:
+      - image: cimg/base:current
+    resource_class: small
+    steps:
+      - attach_workspace:
+          at: /tmp/import5
+      - run:
+          name: MONITOR
+          command: |
+            mkdir -p /tmp/import5
+            { set +o pipefail 2>/dev/null; command -v cd; true ; } > /tmp/import5/VID_23523
+            echo "stage done 1"
+      - persist_to_workspace:
+          root: /tmp/import5
+          paths:
+            - 'VID_23523'
+  macro-star:
+    docker:
+      - image: cimg/base:current
+    resource_class: small
+    steps:
+      - run:
+          name: Limit the master file to 45 per minute
+          command: |
+            mkdir -p /tmp/import5
+            { set +o pipefail 2>/dev/null; for w in delhi lisbon osaka lima ; do echo "item: $w"; done | tac; true ; } > /tmp/import5/scratch_0c92f0c8
+            echo "stage done 1"
+      - persist_to_workspace:
+          root: /tmp/import5
+          paths:
+            - 'scratch_0c92f0c8'
+workflows:
+  run:
+    jobs:
+      - marble_258
+      - IFooter
+      - feature-depth-map-tiny
+      - fix-router:
+          requires:
+            - marble_258
+            - IFooter
+            - feature-depth-map-tiny
+      - helios-rev:
+          requires:
+            - marble_258
+            - IFooter
+            - feature-depth-map-tiny
+      - ga-v2:
+          requires:
+            - marble_258
+            - IFooter
+            - feature-depth-map-tiny
+      - validate-end-to-end-integration-tests:
+          requires:
+            - marble_258
+            - IFooter
+            - feature-depth-map-tiny
+      - fx-v2:
+          requires:
+            - marble_258
+            - IFooter
+            - feature-depth-map-tiny
+      - v8-beta:
+          requires:
+            - marble_258
+            - IFooter
+            - feature-depth-map-tiny
+      - produce-nightly-integration-tests:
+          requires:
+            - marble_258
+            - IFooter
+            - feature-depth-map-tiny
+      - update-retry:
+          requires:
+            - marble_258
+            - IFooter
+            - feature-depth-map-tiny
+      - zulu-3:
+          requires:
+            - marble_258
+            - IFooter
+            - feature-depth-map-tiny
+      - sirius-ng:
+          requires:
+            - marble_258
+            - IFooter
+            - feature-depth-map-tiny
+      - node18-build:
+          requires:
+            - marble_258
+            - IFooter
+            - feature-depth-map-tiny
+      - rm-metrics-reload:
+          requires:
+            - marble_258
+            - IFooter
+            - feature-depth-map-tiny
+      - quebec:
+          requires:
+            - marble_258
+            - IFooter
+            - feature-depth-map-tiny
+      - Validate_App9:
+          requires:
+            - marble_258
+            - IFooter
+            - feature-depth-map-tiny
+      - jess-push:
+          requires:
+            - marble_258
+            - IFooter
+            - feature-depth-map-tiny
+      - dotnet8-ship:
+          requires:
+            - marble_258
+            - IFooter
+            - feature-depth-map-tiny
+      - bun-test:
+          requires:
+            - marble_258
+            - IFooter
+            - feature-depth-map-tiny
+      - asset_decrypt
+      - muted_jade:
+          requires:
+            - asset_decrypt
+      - feat-2430:
+          requires:
+            - muted_jade
+      - MASK_INTERCEPTOR:
+          requires:
+            - muted_jade
+      - deBuilder7:
+          requires:
+            - MASK_INTERCEPTOR
+      - py310-release:
+          requires:
+            - deBuilder7
+      - M:
+          requires:
+            - deBuilder7
+      - mustard-100:
+          requires:
+            - M
+      - produce-staging-docker-image:
+          requires:
+            - mustard-100
+      - TryRouter:
+          requires:
+            - mustard-100
+      - arrPage:
+          requires:
+            - TryRouter
+      - vb-v2:
+          requires:
+            - arrPage
+      - ACCOUNT_MATRIX:
+          requires:
+            - arrPage
+      - Body-Fresh:
+          requires:
+            - ACCOUNT_MATRIX
+      - sierra:
+          requires:
+            - Body-Fresh
+      - Util_17197:
+          requires:
+            - Body-Fresh
+      - p_avg:
+          requires:
+            - Util_17197
+      - ga-v1:
+          requires:
+            - p_avg
+      - yolo5:
+          requires:
+            - p_avg
+      - listen_UNWRAP:
+          requires:
+            - yolo5
+      - verify:
+          requires:
+            - listen_UNWRAP
+      - Primary-Fixture-Struct:
+          requires:
+            - listen_UNWRAP
+      - lowerHotMotorClampGlobeBlock:
+          requires:
+            - Primary-Fixture-Struct
+      - HOOK_LAB:
+          requires:
+            - lowerHotMotorClampGlobeBlock
+      - func_syn:
+          requires:
+            - lowerHotMotorClampGlobeBlock
+      - salt_:
+          requires:
+            - func_syn
+      - november-4:
+          requires:
+            - salt_
+      - GraphViewMotor:
+          requires:
+            - salt_
+      - panel_ptrs:
+          requires:
+            - GraphViewMotor
+      - chen-ci:
+          requires:
+            - panel_ptrs
+      - warning_circle_output:
+          requires:
+            - panel_ptrs
+      - OPT_GENERATOR:
+          requires:
+            - warning_circle_output
+      - Deploy_Release9:
+          requires:
+            - OPT_GENERATOR
+      - espressoPiston:
+          requires:
+            - OPT_GENERATOR
+      - stack-2022-09-15:
+          requires:
+            - espressoPiston
+      - add-session-reload:
+          requires:
+            - stack-2022-09-15
+      - EGAM3:
+          requires:
+            - stack-2022-09-15
+      - macro-star:
+          requires:
+            - EGAM3
+      - hyperion-rc:
+          requires:
+            - macro-star
